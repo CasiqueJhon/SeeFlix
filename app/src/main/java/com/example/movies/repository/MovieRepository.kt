@@ -23,4 +23,13 @@ class MovieRepository {
             NetworkConstants.APY_KEY
         )
     }
+
+    suspend fun getMostRatedMovies(page: Int, pageSize: Int): MovieDbResult {
+        return MovieDbClient.service.mostRatedMoviesList(
+            page,
+            pageSize,
+            NetworkConstants.ES_LANGUAGE,
+            NetworkConstants.APY_KEY
+        )
+    }
 }
