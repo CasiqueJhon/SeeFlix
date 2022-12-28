@@ -15,7 +15,6 @@ import com.example.movies.model.Movie
 import com.example.movies.repository.MovieRepository
 import com.example.movies.view.activity.MovieDetail
 import com.example.movies.view.adapter.MoviesAdapter
-import kotlinx.android.synthetic.main.activity_show_movies.*
 
 class PopularMoviesActivity : AppCompatActivity() {
 
@@ -38,7 +37,7 @@ class PopularMoviesActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.moviesList.adapter = moviesAdapter
         title = getString(R.string.most_popular_movies)
-        popularMoviesViewModel.fetchMovies(1)
+        popularMoviesViewModel.fetchPopularMovies(1)
         popularMoviesViewModel.movies.observe(this, Observer { movies ->
             if (!popularMoviesViewModel.isLoading) {
                 moviesAdapter.appendMovies(movies)
@@ -65,7 +64,7 @@ class PopularMoviesActivity : AppCompatActivity() {
         val totalItemCount = layoutManager.itemCount
         if (totalItemCount - lastVisibleItem <= 5 && !popularMoviesViewModel.isLoading) {
             popularMoviesViewModel.currentPage++
-            popularMoviesViewModel.fetchMovies(popularMoviesViewModel.currentPage)
+            popularMoviesViewModel.fetchPopularMovies(popularMoviesViewModel.currentPage)
         }
     }
 

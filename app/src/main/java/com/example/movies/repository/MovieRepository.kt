@@ -14,4 +14,13 @@ class MovieRepository {
             NetworkConstants.APY_KEY
         )
     }
+
+    suspend fun getUpcomingMovies(page: Int, pageSize: Int): MovieDbResult {
+        return MovieDbClient.service.upcomingMoviesList(
+            page,
+            pageSize,
+            NetworkConstants.ES_LANGUAGE,
+            NetworkConstants.APY_KEY
+        )
+    }
 }
