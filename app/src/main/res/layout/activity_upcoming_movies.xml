@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.UpcomingMovies">
+    tools:context=".ui.upcomingMovies.UpcomingMovies">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/upcoming_movies_list"

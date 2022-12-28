@@ -1,4 +1,4 @@
-package com.example.movies.view.activity
+package com.example.movies.ui.mostRatedMovies
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,15 +7,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movies.R
 import com.example.movies.constants.NetworkConstants
-import com.example.movies.databinding.ActivityUpcomingMoviesBinding
+import com.example.movies.databinding.ActivityMostRatedMoviesBinding
 import com.example.movies.model.Movie
 import com.example.movies.model.MovieDbClient
+import com.example.movies.view.activity.MovieDetail
 import com.example.movies.view.adapter.MoviesAdapter
-import kotlinx.android.synthetic.main.activity_show_movies.*
-import kotlinx.android.synthetic.main.activity_upcoming_movies.*
+import kotlinx.android.synthetic.main.activity_most_rated_movies.*
 import kotlinx.coroutines.launch
 
-class UpcomingMovies : AppCompatActivity() {
+class MostRatedMovies : AppCompatActivity() {
 
     private val moviesAdapter = MoviesAdapter { navigateToDetail(it) }
     private var currentPage = 1
@@ -23,30 +23,30 @@ class UpcomingMovies : AppCompatActivity() {
     private val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
-            if (!upcoming_movies_list.canScrollVertically(1)) {
+            if (!most_rated_movies_list.canScrollVertically(1)) {
                 currentPage += 1
-                getUpcomingMovies()
+                getMostRatedMovies()
             }
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityUpcomingMoviesBinding.inflate(layoutInflater)
+        val binding = ActivityMostRatedMoviesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.upcomingMoviesList.adapter = moviesAdapter
-        title = getString(R.string.upcoming_movies)
-        getUpcomingMovies()
-        binding.upcomingMoviesList.addOnScrollListener(scrollListener)
+        binding.mostRatedMoviesList.adapter = moviesAdapter
+        title = getString(R.string.most_rated_movies)
+        getMostRatedMovies()
+        binding.mostRatedMoviesList.addOnScrollListener(scrollListener)
     }
 
-    private fun getUpcomingMovies() {
+    private fun getMostRatedMovies() {
         lifecycleScope.launch {
-            val upcomingMovies = MovieDbClient.service.upcomingMoviesList(
+            val mostRatedMovies = MovieDbClient.service.mostRatedMoviesList(
                 currentPage, pageSize, NetworkConstants.ES_LANGUAGE,
                 NetworkConstants.APY_KEY
             )
-            moviesAdapter.appendMovies(upcomingMovies.results)
+            moviesAdapter.appendMovies(mostRatedMovies.results)
         }
     }
 

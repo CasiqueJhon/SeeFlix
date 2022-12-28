@@ -12,11 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Movies">
         <activity
-            android:name=".view.activity.UpcomingMovies"
+            android:name=".ui.upcomingMovies.UpcomingMovies"
             android:exported="false"
             android:parentActivityName=".MainActivity"/>
         <activity
-            android:name=".view.activity.MostRatedMovies"
+            android:name=".ui.mostRatedMovies.MostRatedMovies"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
@@ -32,9 +32,9 @@
         <activity
             android:name=".view.activity.MovieDetail"
             android:exported="false"
-            android:parentActivityName=".view.activity.PopularMovies" />
+            android:parentActivityName=".ui.popularMovies.PopularMoviesActivity" />
         <activity
-            android:name=".view.activity.PopularMovies"
+            android:name=".ui.popularMovies.PopularMoviesActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
