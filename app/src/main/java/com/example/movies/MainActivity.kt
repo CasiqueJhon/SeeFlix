@@ -4,9 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.movies.databinding.ActivityMainBinding
-import com.example.movies.view.activity.MostRatedMovies
-import com.example.movies.view.activity.PopularMovies
-import com.example.movies.view.activity.UpcomingMovies
+import com.example.movies.ui.mostRatedMovies.MostRatedMovies
+import com.example.movies.ui.popularMovies.PopularMoviesActivity
+import com.example.movies.ui.upcomingMovies.UpcomingMovies
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showMostPopularMovies() {
-        startActivity(Intent(this, PopularMovies::class.java))
+        startActivity(Intent(this, PopularMoviesActivity::class.java))
     }
 
 }
