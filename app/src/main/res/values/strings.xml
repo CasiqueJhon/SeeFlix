@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Movies</string>
+    <string name="movie_releases_year">Release:</string>
+    <string name="movie_detail_overview">Overview</string>
+    <string name="most_popular_movies">Most Popular Movies</string>
+    <string name="most_rated_movies">Most Rated Movies</string>
+    <string name="upcoming_movies">Upcoming Movies</string>
+    <string name="credits_name_detail">Name</string>
+    <string name="character_credits_detail">Character</string>
+    <string name="movie_cast_detail">Cast:</string>
+    <string name="next_page_popular_movies_button">next</string>
+    <string name="prev_button_popular_movies">prev</string>
+</resources>

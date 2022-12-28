@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Movies</string>
+    <string name="movie_releases_year">Fecha de lanzamiento</string>
+    <string name="movie_detail_overview">Descripción</string>
+    <string name="most_popular_movies">Populares</string>
+    <string name="most_rated_movies">Las mas votadas</string>
+    <string name="upcoming_movies">Proximos estrenos</string>
+    <string name="movie_cast_detail">Reparto:</string>
+    <string name="credits_name_detail">Nombre</string>
+    <string name="character_credits_detail">Personaje</string>
+</resources>
