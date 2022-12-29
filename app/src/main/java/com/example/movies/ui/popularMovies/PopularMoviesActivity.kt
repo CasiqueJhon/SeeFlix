@@ -15,19 +15,15 @@ import com.example.movies.model.Movie
 import com.example.movies.repository.MovieRepository
 import com.example.movies.ui.MovieDetail
 import com.example.movies.ui.adapter.MoviesAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class PopularMoviesActivity : AppCompatActivity() {
 
-
     private lateinit var popularMoviesLayoutMgr: LinearLayoutManager
-    private val repository = MovieRepository()
-    private val popularMoviesViewModel by viewModels<PopularMoviesViewModel> {
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return PopularMoviesViewModel(repository) as T
-            }
-        }
-    }
+    @Inject lateinit var repository : MovieRepository
+    private val popularMoviesViewModel by viewModels<PopularMoviesViewModel>()
     private val moviesAdapter = MoviesAdapter { navigateToDetail(it) }
 
     override fun onCreate(savedInstanceState: Bundle?) {

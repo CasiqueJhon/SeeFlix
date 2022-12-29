@@ -7,6 +7,7 @@ import com.example.movies.databinding.ActivityMainBinding
 import com.example.movies.ui.mostRatedMovies.MostRatedMovies
 import com.example.movies.ui.popularMovies.PopularMoviesActivity
 import com.example.movies.ui.upcomingMovies.UpcomingMovies
+import dagger.hilt.android.HiltAndroidApp
 
 class MainActivity : AppCompatActivity() {
 

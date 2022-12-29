@@ -3,8 +3,9 @@ package com.example.movies.repository
 import com.example.movies.constants.NetworkConstants
 import com.example.movies.model.MovieDbClient
 import com.example.movies.model.MovieDbResult
+import javax.inject.Inject
 
-class MovieRepository {
+class MovieRepository @Inject constructor() {
 
     suspend fun getPopularMovies(page: Int, pageSize: Int): MovieDbResult {
         return MovieDbClient.service.popularMoviesList(
