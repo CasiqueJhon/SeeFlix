@@ -13,8 +13,8 @@ import com.example.movies.R
 import com.example.movies.databinding.ActivityShowMoviesBinding
 import com.example.movies.model.Movie
 import com.example.movies.repository.MovieRepository
-import com.example.movies.view.activity.MovieDetail
-import com.example.movies.view.adapter.MoviesAdapter
+import com.example.movies.ui.MovieDetail
+import com.example.movies.ui.adapter.MoviesAdapter
 
 class PopularMoviesActivity : AppCompatActivity() {
 

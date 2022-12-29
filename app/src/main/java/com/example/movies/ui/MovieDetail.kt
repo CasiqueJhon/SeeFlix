@@ -1,4 +1,4 @@
-package com.example.movies.view.activity
+package com.example.movies.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,7 +10,7 @@ import com.example.movies.constants.NetworkConstants
 import com.example.movies.databinding.ActivityMovieDetailBinding
 import com.example.movies.model.Movie
 import com.example.movies.model.MovieDbClient
-import com.example.movies.view.adapter.CharactersAdapter
+import com.example.movies.ui.adapter.CharactersAdapter
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 import kotlinx.coroutines.launch
 

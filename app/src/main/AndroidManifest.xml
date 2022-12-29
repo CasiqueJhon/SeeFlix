@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activity.MovieDetail"
+            android:name=".ui.MovieDetail"
             android:exported="false"
             android:parentActivityName=".ui.popularMovies.PopularMoviesActivity" />
         <activity
