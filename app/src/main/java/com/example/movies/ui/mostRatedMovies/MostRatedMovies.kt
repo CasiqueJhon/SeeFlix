@@ -6,19 +6,14 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movies.R
-import com.example.movies.constants.NetworkConstants
 import com.example.movies.databinding.ActivityMostRatedMoviesBinding
 import com.example.movies.model.Movie
-import com.example.movies.model.MovieDbClient
 import com.example.movies.repository.MovieRepository
-import com.example.movies.view.activity.MovieDetail
-import com.example.movies.view.adapter.MoviesAdapter
-import kotlinx.android.synthetic.main.activity_most_rated_movies.*
-import kotlinx.coroutines.launch
+import com.example.movies.ui.MovieDetail
+import com.example.movies.ui.adapter.MoviesAdapter
 
 class MostRatedMovies : AppCompatActivity() {
 
