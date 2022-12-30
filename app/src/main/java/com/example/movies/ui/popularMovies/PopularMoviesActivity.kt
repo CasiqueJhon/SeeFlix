@@ -22,7 +22,8 @@ import javax.inject.Inject
 class PopularMoviesActivity : AppCompatActivity() {
 
     private lateinit var popularMoviesLayoutMgr: LinearLayoutManager
-    @Inject lateinit var repository : MovieRepository
+    @Inject
+    lateinit var repository : MovieRepository
     private val popularMoviesViewModel by viewModels<PopularMoviesViewModel>()
     private val moviesAdapter = MoviesAdapter { navigateToDetail(it) }
 

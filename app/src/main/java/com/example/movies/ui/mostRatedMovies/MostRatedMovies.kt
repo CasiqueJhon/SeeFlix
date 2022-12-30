@@ -14,18 +14,16 @@ import com.example.movies.model.Movie
 import com.example.movies.repository.MovieRepository
 import com.example.movies.ui.MovieDetail
 import com.example.movies.ui.adapter.MoviesAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MostRatedMovies : AppCompatActivity() {
 
     private lateinit var mostRatedMoviesLayoutMgr: LinearLayoutManager
-    private val repository = MovieRepository()
-    private val mosRatedMoviesViewModel by viewModels<MosRatedMoviesViewModel> {
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return MosRatedMoviesViewModel(repository) as T
-            }
-        }
-    }
+    @Inject
+    lateinit var repository : MovieRepository
+    private val mosRatedMoviesViewModel by viewModels<MosRatedMoviesViewModel>()
     private val moviesAdapter = MoviesAdapter { navigateToDetail(it) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
