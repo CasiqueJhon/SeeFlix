@@ -5,8 +5,9 @@ import com.example.movies.model.CreditsResults
 import com.example.movies.model.MovieDbResult
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
-class TheMovieDbServiceImpl : TheMovieDbService {
+class TheMovieDbServiceImpl @Inject constructor(): TheMovieDbService {
 
     private val retrofit =  Retrofit.Builder()
         .baseUrl(NetworkConstants.BASE_URL)

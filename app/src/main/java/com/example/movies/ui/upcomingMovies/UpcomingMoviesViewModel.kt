@@ -5,9 +5,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movies.model.Movie
 import com.example.movies.repository.MovieRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class UpcomingMoviesViewModel(private val movieRepository: MovieRepository) : ViewModel() {
+@HiltViewModel
+class UpcomingMoviesViewModel @Inject constructor(
+    private val movieRepository: MovieRepository
+) : ViewModel() {
 
     var currentPage = 1
     private val pageSize = 20

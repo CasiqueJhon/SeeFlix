@@ -4,15 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movies.R
 import com.example.movies.databinding.ActivityMostRatedMoviesBinding
 import com.example.movies.model.Movie
 import com.example.movies.repository.MovieRepository
-import com.example.movies.ui.MovieDetail
+import com.example.movies.ui.movieDetail.MovieDetail
 import com.example.movies.ui.adapter.MoviesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

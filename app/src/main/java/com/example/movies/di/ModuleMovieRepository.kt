@@ -9,7 +9,7 @@ import dagger.hilt.InstallIn
 @InstallIn(ApplicationComponent::class)
 object ModuleMovieRepository {
     @Provides
-    fun provideMovieRepository(theMovieDbService: TheMovieDbService) : MovieRepository {
+    fun provideMovieRepository(theMovieDbService: TheMovieDbServiceImpl) : MovieRepository {
         return MovieRepository(theMovieDbService)
     }
 }
