@@ -20,14 +20,13 @@ class MovieDetailViewModel @Inject constructor(
     private val _movie = MutableLiveData<Movie>()
     private val _characters = MutableLiveData<List<Cast>>()
 
-    var movieId: Int = 0
     val movie : LiveData<Movie> = _movie
     val characters : LiveData<List<Cast>> = _characters
 
     fun fetchMovieCredits(movie_id: Int?) {
         viewModelScope.launch {
-            val credits = movieRepository.getMovieCredits(movieId)
-            _characters.value = credits.cast
+            val credits = movie_id?.let { movieRepository.getMovieCredits(it) }
+            _characters.value = credits?.cast
         }
     }
 

@@ -36,7 +36,7 @@ class MovieDetail : AppCompatActivity() {
         setContentView(binding.root)
         movie = intent.getParcelableExtra(EXTRA_MOVIE) ?: Movie()
         if (movie != null) showMovieDetails()
-        //prepareAdapter()
+        prepareAdapter()
 
     }
 
@@ -54,18 +54,18 @@ class MovieDetail : AppCompatActivity() {
         Log.d("TAG", "movie id $movieId")
     }
 
-//    private fun prepareAdapter() {
-//        val charactersAdapter = CharactersAdapter(movieDetailViewModel.characters.value ?: emptyList())
-//        binding.castList.adapter = charactersAdapter
-//        movieDetailViewModel.fetchMovieCredits(movieId)
-//        movieDetailViewModel.characters.observe(this, Observer { data ->
-//            charactersAdapter.setData(data)
-//            charactersAdapter.notifyDataSetChanged()
-//        })
-//        binding.castList.layoutManager = LinearLayoutManager(
-//            this@MovieDetail,
-//            LinearLayoutManager.HORIZONTAL,
-//            false
-//        )
-//    }
+    private fun prepareAdapter() {
+        val charactersAdapter = CharactersAdapter(movieDetailViewModel.characters.value ?: emptyList())
+        binding.castList.adapter = charactersAdapter
+        movieDetailViewModel.fetchMovieCredits(movieId)
+        movieDetailViewModel.characters.observe(this, Observer { data ->
+            charactersAdapter.setData(data)
+            charactersAdapter.notifyDataSetChanged()
+        })
+        binding.castList.layoutManager = LinearLayoutManager(
+            this@MovieDetail,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+    }
 }
