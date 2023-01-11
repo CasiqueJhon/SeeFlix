@@ -2,8 +2,8 @@
     <string name="app_name">Movies</string>
     <string name="movie_releases_year">Release:</string>
     <string name="movie_detail_overview">Overview</string>
-    <string name="most_popular_movies">Most Popular Movies</string>
-    <string name="most_rated_movies">Most Rated Movies</string>
+    <string name="most_popular_movies">Popular Movies</string>
+    <string name="most_rated_movies">Rated Movies</string>
     <string name="upcoming_movies">Upcoming Movies</string>
     <string name="credits_name_detail">Name</string>
     <string name="character_credits_detail">Character</string>

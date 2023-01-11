@@ -5,6 +5,8 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.321875" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/black_gradient.xml" value="0.221" />
+        <entry key="app/src/main/res/drawable/gray_gradient.xml" value="0.221" />
         <entry key="app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.224" />
         <entry key="app/src/main/res/drawable/ic_broken_image.xml" value="0.224" />
         <entry key="app/src/main/res/drawable/ic_image_placeholder.xml" value="0.221" />
