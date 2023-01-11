@@ -5,29 +5,25 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movies.R
 import com.example.movies.databinding.ActivityShowMoviesBinding
 import com.example.movies.model.Movie
 import com.example.movies.repository.MovieRepository
-import com.example.movies.ui.MovieDetail
+import com.example.movies.ui.movieDetail.MovieDetail
 import com.example.movies.ui.adapter.MoviesAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class PopularMoviesActivity : AppCompatActivity() {
 
-
+    @Inject
+    lateinit var repository : MovieRepository
     private lateinit var popularMoviesLayoutMgr: LinearLayoutManager
-    private val repository = MovieRepository()
-    private val popularMoviesViewModel by viewModels<PopularMoviesViewModel> {
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return PopularMoviesViewModel(repository) as T
-            }
-        }
-    }
+
+    private val popularMoviesViewModel by viewModels<PopularMoviesViewModel>()
     private val moviesAdapter = MoviesAdapter { navigateToDetail(it) }
 
     override fun onCreate(savedInstanceState: Bundle?) {

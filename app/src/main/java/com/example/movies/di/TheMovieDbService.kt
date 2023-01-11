@@ -1,6 +1,7 @@
-package com.example.movies.model
+package com.example.movies.di
 
-import retrofit2.Call
+import com.example.movies.model.CreditsResults
+import com.example.movies.model.MovieDbResult
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

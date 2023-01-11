@@ -12,9 +12,12 @@ class CharactersAdapter(
     var creditsList: List<Cast>
 ) : RecyclerView.Adapter<CharactersAdapter.CharacterViewHolder>() {
 
+    fun setData(data: List<Cast>) {
+        this.creditsList = data
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val binding = CreditsItemBinding.inflate(from(parent.context), parent, false)
-
         return CharacterViewHolder(binding)
     }
 
