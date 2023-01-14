@@ -148,7 +148,34 @@
                     tools:listitem="@layout/credits_item" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/videos_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/movie_videos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
+                    android:text="@string/movie_videos_detail"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/video_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:scrollbars="horizontal"
+                    tools:listitem="@layout/videos_item" />
+
+            </LinearLayout>
+
         </LinearLayout>
+
     </ScrollView>
 
 </LinearLayout>

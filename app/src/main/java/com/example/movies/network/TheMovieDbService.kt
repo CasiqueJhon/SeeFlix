@@ -1,7 +1,8 @@
-package com.example.movies.di
+package com.example.movies.network
 
 import com.example.movies.model.CreditsResults
 import com.example.movies.model.MovieDbResult
+import com.example.movies.model.VideosResults
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -38,5 +39,12 @@ interface TheMovieDbService {
         @Path("movie_id") movie_id: Int?,
         @Query("api_key") apiKey: String
     ) : CreditsResults
+
+    @GET("movie/{movie_id}/videos")
+    suspend fun getMovieVideos(
+        @Path("movie_id") movie_id: Int?,
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String
+    ) : VideosResults
 
 }

@@ -9,4 +9,7 @@
     <string name="movie_cast_detail">Reparto:</string>
     <string name="credits_name_detail">Nombre</string>
     <string name="character_credits_detail">Personaje</string>
+    <string name="next_page_popular_movies_button">siguiente</string>
+    <string name="prev_button_popular_movies">anterior</string>
+    <string name="movie_videos_detail">Trailers:</string>
 </resources>

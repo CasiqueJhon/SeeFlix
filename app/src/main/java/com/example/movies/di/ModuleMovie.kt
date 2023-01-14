@@ -1,5 +1,7 @@
 package com.example.movies.di
 
+import com.example.movies.network.TheMovieDbService
+import com.example.movies.network.TheMovieDbServiceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
