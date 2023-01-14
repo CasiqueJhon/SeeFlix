@@ -8,9 +8,11 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.movies.databinding.ActivityMovieDetailBinding
+import com.example.movies.databinding.VideosItemBinding
 import com.example.movies.model.Movie
 import com.example.movies.repository.MovieRepository
 import com.example.movies.ui.adapter.CharactersAdapter
+import com.example.movies.ui.adapter.VideosAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 import javax.inject.Inject
@@ -56,6 +58,7 @@ class MovieDetail : AppCompatActivity() {
 
     private fun prepareAdapter() {
         val charactersAdapter = CharactersAdapter(movieDetailViewModel.characters.value ?: emptyList())
+        val videosAdapter = VideosAdapter(movieDetailViewModel.videos.value ?: emptyList())
         binding.castList.adapter = charactersAdapter
         movieDetailViewModel.fetchMovieCredits(movieId)
         movieDetailViewModel.characters.observe(this, Observer { data ->
@@ -65,6 +68,17 @@ class MovieDetail : AppCompatActivity() {
         binding.castList.layoutManager = LinearLayoutManager(
             this@MovieDetail,
             LinearLayoutManager.HORIZONTAL,
+            false
+        )
+        binding.videoList.adapter = videosAdapter
+        movieDetailViewModel.fetchMovieVideos(movieId)
+        movieDetailViewModel.videos.observe(this, Observer { videoData ->
+            videosAdapter.setData(videoData)
+            videosAdapter.notifyDataSetChanged()
+        })
+        binding.videoList.layoutManager = LinearLayoutManager(
+            this@MovieDetail,
+            LinearLayoutManager.VERTICAL,
             false
         )
     }

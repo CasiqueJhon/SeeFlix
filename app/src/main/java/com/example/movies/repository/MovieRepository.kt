@@ -2,9 +2,9 @@ package com.example.movies.repository
 
 import com.example.movies.constants.NetworkConstants
 import com.example.movies.model.MovieDbResult
-import com.example.movies.di.TheMovieDbService
-import com.example.movies.di.TheMovieDbServiceImpl
+import com.example.movies.network.TheMovieDbServiceImpl
 import com.example.movies.model.CreditsResults
+import com.example.movies.model.VideosResults
 import javax.inject.Inject
 
 class MovieRepository @Inject constructor(
@@ -40,6 +40,10 @@ class MovieRepository @Inject constructor(
 
     suspend fun getMovieCredits(movieId: Int): CreditsResults {
         return theMovieDbService.creditsList(movieId, NetworkConstants.APY_KEY)
+    }
+
+    suspend fun getMovieVideos(movieId: Int) : VideosResults {
+        return theMovieDbService.getMovieVideos(movieId, NetworkConstants.APY_KEY, NetworkConstants.ES_LANGUAGE)
     }
 
 }

@@ -1,8 +1,9 @@
-package com.example.movies.di
+package com.example.movies.network
 
 import com.example.movies.constants.NetworkConstants
 import com.example.movies.model.CreditsResults
 import com.example.movies.model.MovieDbResult
+import com.example.movies.model.VideosResults
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
@@ -45,5 +46,9 @@ class TheMovieDbServiceImpl @Inject constructor(): TheMovieDbService {
 
     override suspend fun creditsList(movie_id: Int?, apiKey: String): CreditsResults {
         return service.creditsList(movie_id, apiKey)
+    }
+
+    override suspend fun getMovieVideos(movie_id: Int?, apiKey: String, language: String): VideosResults {
+        return service.getMovieVideos(movie_id, apiKey, language)
     }
 }
