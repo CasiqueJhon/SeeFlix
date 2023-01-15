@@ -13,21 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Movies">
         <activity
-            android:name=".ui.upcomingMovies.UpcomingMovies"
-            android:exported="false"
-            android:parentActivityName=".MainActivity"/>
-        <activity
-            android:name=".ui.mostRatedMovies.MostRatedMovies"
-            android:exported="false"
-            android:parentActivityName=".MainActivity" />
-        <activity
             android:name=".ui.movieDetail.MovieDetail"
-            android:exported="false"
-            android:parentActivityName=".ui.popularMovies.PopularMoviesActivity" />
-        <activity
-            android:name=".ui.popularMovies.PopularMoviesActivity"
-            android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
