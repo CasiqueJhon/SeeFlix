@@ -8,141 +8,21 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <ScrollView
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:tabMode="fixed"
+        app:tabIndicatorColor="@color/tab_selected"
+        app:tabSelectedTextColor="@color/tab_selected"
+        app:tabGravity="fill"
+        />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp">
-
-                <io.github.florent37.shapeofview.shapes.RoundRectView
-                    android:id="@+id/popular_square"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:shape_roundRect_bottomLeftRadius="20dp"
-                    app:shape_roundRect_bottomRightRadius="20dp"
-                    app:shape_roundRect_topLeftRadius="20dp"
-                    app:shape_roundRect_topRightRadius="20dp"
-                    android:elevation="4dp"
-                    app:shape_roundRect_borderColor="@android:color/white"
-                    app:shape_roundRect_borderWidth="2dp"
-                    >
-
-                    <TextView
-                        android:id="@+id/txt_most_popular_movies"
-                        android:layout_width="wrap_content"
-                        android:layout_height="130dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:background="@drawable/gray_gradient"
-                        android:text="@string/most_popular_movies"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                        android:padding="16dp"/>
-
-                </io.github.florent37.shapeofview.shapes.RoundRectView>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@drawable/gray_gradient" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp">
-
-                <io.github.florent37.shapeofview.shapes.RoundRectView
-                    android:id="@+id/rated_square"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:shape_roundRect_bottomLeftRadius="20dp"
-                    app:shape_roundRect_bottomRightRadius="20dp"
-                    app:shape_roundRect_topLeftRadius="20dp"
-                    app:shape_roundRect_topRightRadius="20dp"
-                    android:elevation="4dp"
-                    app:shape_roundRect_borderColor="@android:color/white"
-                    app:shape_roundRect_borderWidth="2dp"
-                    >
-
-                <TextView
-                    android:id="@+id/txt_most_rated_movies"
-                    android:layout_width="wrap_content"
-                    android:layout_height="130dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:text="@string/most_rated_movies"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:background="@drawable/gray_gradient"
-                    android:gravity="center"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                </io.github.florent37.shapeofview.shapes.RoundRectView>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@drawable/gray_gradient" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp">
-
-                <io.github.florent37.shapeofview.shapes.RoundRectView
-                    android:id="@+id/upcoming_square"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:shape_roundRect_bottomLeftRadius="20dp"
-                    app:shape_roundRect_bottomRightRadius="20dp"
-                    app:shape_roundRect_topLeftRadius="20dp"
-                    app:shape_roundRect_topRightRadius="20dp"
-                    android:elevation="4dp"
-                    app:shape_roundRect_borderColor="@android:color/white"
-                    app:shape_roundRect_borderWidth="2dp"
-                    >
-
-                <TextView
-                    android:id="@+id/txt_upcoming_movies"
-                    android:layout_width="wrap_content"
-                    android:layout_height="130dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/gray_gradient"
-                    android:text="@string/upcoming_movies"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:gravity="center"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                </io.github.florent37.shapeofview.shapes.RoundRectView>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@drawable/gray_gradient" />
-
-        </LinearLayout>
-    </ScrollView>
 
 </LinearLayout>

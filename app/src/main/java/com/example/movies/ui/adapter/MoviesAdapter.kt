@@ -42,7 +42,7 @@ class MoviesAdapter(
             binding.movieTitle.text = movie.title
             Glide
                 .with(binding.root.context)
-                .load("https://image.tmdb.org/t/p/w780/${movie.thumbnail}")
+                .load("https://image.tmdb.org/t/p/w500/${movie.thumbnail}")
                 .into(binding.thumbnail)
             binding.thumbnail.ratio = 1.5f
         }
