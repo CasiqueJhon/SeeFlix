@@ -47,4 +47,10 @@ interface TheMovieDbService {
         @Query("language") language: String
     ) : VideosResults
 
+    @GET("search/movie")
+    suspend fun getMoviesBySearch(
+        @Query("query") query: String,
+        @Query("api_key") apiKey: String
+    )
+
 }

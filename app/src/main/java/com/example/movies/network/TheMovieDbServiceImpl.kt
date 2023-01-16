@@ -51,4 +51,8 @@ class TheMovieDbServiceImpl @Inject constructor(): TheMovieDbService {
     override suspend fun getMovieVideos(movie_id: Int?, apiKey: String, language: String): VideosResults {
         return service.getMovieVideos(movie_id, apiKey, language)
     }
+
+    override suspend fun getMoviesBySearch(query: String, apiKey: String) {
+        TODO("Not yet implemented")
+    }
 }
