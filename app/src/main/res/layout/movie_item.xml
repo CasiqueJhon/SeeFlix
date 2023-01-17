@@ -21,11 +21,12 @@
         android:id="@+id/movie_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gray_gradient"
+        android:background="@drawable/black_gradient"
         android:ellipsize="end"
         android:gravity="center"
         android:lines="1"
         android:padding="16dp"
         android:text="Movie Title"
+        android:textColor="#FF0000"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 </LinearLayout>

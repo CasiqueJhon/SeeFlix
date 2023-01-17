@@ -6,8 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movies.databinding.VideosItemBinding
 import com.example.movies.model.Videos
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-import kotlinx.android.synthetic.main.videos_item.view.*
 
 class VideosAdapter(
     var videosList: List<Videos>

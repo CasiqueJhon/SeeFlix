@@ -12,4 +12,8 @@
     <string name="next_page_popular_movies_button">siguiente</string>
     <string name="prev_button_popular_movies">anterior</string>
     <string name="movie_videos_detail">Trailers:</string>
+    <string name="home_nav_menu">Home</string>
+    <string name="search_nav_menu">Buscar</string>
+    <string name="favorites_nav_menu">Favoritas</string>
+    <string name="profile_nav_menu">Usuario</string>
 </resources>
