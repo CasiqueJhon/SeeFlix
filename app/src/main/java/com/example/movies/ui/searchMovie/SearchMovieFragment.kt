@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.movies.MainActivity
+import com.example.movies.R
 import com.example.movies.constants.ErrorConstants
 import com.example.movies.databinding.FragmentSearchMovieBinding
 import com.example.movies.model.Movie
@@ -67,6 +69,7 @@ class SearchMovieFragment : Fragment() {
                 searchFragmentViewModel.isLoading = true
             }
         }
+        prepareBottomNavigationView()
     }
 
     private fun navigateToDetail(movie: Movie) {
@@ -75,16 +78,25 @@ class SearchMovieFragment : Fragment() {
         startActivity(intent)
     }
 
-    fun updateQuery(query: String) {
-        this.query = query
-        if (query.isNotEmpty()) {
-            searchFragmentViewModel.fetchMoviesBySearch(query)
-            searchFragmentViewModel.moviesSearch.observe(viewLifecycleOwner) { movies ->
-                if (!searchFragmentViewModel.isLoading) {
-                    moviesAdapter.appendMovies(movies)
-                    searchFragmentViewModel.isLoading = true
+    private fun prepareBottomNavigationView() {
+        val bottomNavigationView = binding.bottomNavigation
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    val intent = Intent(requireContext(), MainActivity::class.java)
+                    startActivity(intent)
+                }
+                R.id.nav_search -> {
+
+                }
+                R.id.nav_favorites -> {
+
+                }
+                R.id.nav_profile -> {
+
                 }
             }
+            true
         }
     }
 }

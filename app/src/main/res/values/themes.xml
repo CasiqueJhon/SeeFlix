@@ -23,4 +23,9 @@
         <item name="windowActionBar">false</item>
     </style>
 
+    <style name="BottomNavigationViewStyle" parent="Widget.Design.BottomNavigationView">
+        <item name="itemIconTint">@color/tab_unselected</item>
+        <item name="itemTextColor">@color/tab_selected</item>
+    </style>
+
 </resources>

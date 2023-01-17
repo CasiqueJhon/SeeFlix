@@ -11,6 +11,8 @@
     <string name="next_page_popular_movies_button">next</string>
     <string name="prev_button_popular_movies">prev</string>
     <string name="movie_videos_detail">Trailers:</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_nav_menu">Home</string>
+    <string name="search_nav_menu">Search</string>
+    <string name="favorites_nav_menu">Favorites</string>
+    <string name="profile_nav_menu">Profile</string>
 </resources>
