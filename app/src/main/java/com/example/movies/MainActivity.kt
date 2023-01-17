@@ -19,9 +19,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var searchView: SearchView
     private lateinit var searchMovieFragment: SearchMovieFragment
-
-    private val fragmentManager = supportFragmentManager
-    private val fragmentTransaction = fragmentManager.beginTransaction()
     private var fragmentCommitted = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,13 +26,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUpAdapter()
-    }
-
-    private fun init() {
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.fragment_container, PopularMoviesFragment())
-            .commit()
     }
 
     private fun setUpAdapter() {
@@ -65,18 +55,18 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                //launchSearchFragment(newText)
+                launchSearchFragment(newText)
                 return false
             }
 
             private fun launchSearchFragment(newText: String?): Boolean {
                 if (newText != null && newText.isNotEmpty()) {
+                    val fragmentManager = supportFragmentManager
+                    val fragmentTransaction = fragmentManager.beginTransaction()
                     searchMovieFragment = SearchMovieFragment.newInstance(newText)
-                    fragmentTransaction.replace(R.id.fragment_container, searchMovieFragment)
+                    fragmentTransaction.add(R.id.fragment_container, searchMovieFragment)
                     fragmentTransaction.addToBackStack(null)
-                    fragmentManager.popBackStack("SearchMovieFragment", 0)
-                    fragmentTransaction.show(searchMovieFragment)
-                    if (!fragmentCommitted)
+                    if (fragmentCommitted)
                         fragmentTransaction.commit()
                     fragmentCommitted = true
                 }
@@ -84,10 +74,12 @@ class MainActivity : AppCompatActivity() {
             }
         })
         searchView.setOnCloseListener {
+            val fragmentManager = supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.hide(searchMovieFragment)
+            fragmentTransaction.commit()
             searchView.setQuery("", false)
             searchView.clearFocus()
-            fragmentTransaction.commit()
             fragmentCommitted = false
             false
         }
