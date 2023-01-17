@@ -46,4 +46,8 @@ class MovieRepository @Inject constructor(
         return theMovieDbService.getMovieVideos(movieId, NetworkConstants.APY_KEY, NetworkConstants.ES_LANGUAGE)
     }
 
+    suspend fun getMovieSearch(query: String) : MovieDbResult {
+        return theMovieDbService.getMoviesBySearch(query, NetworkConstants.APY_KEY)
+    }
+
 }

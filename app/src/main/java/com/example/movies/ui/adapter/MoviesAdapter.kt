@@ -11,7 +11,7 @@ class MoviesAdapter(
     private val movieClickListener: (Movie) -> Unit
 ) : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
-    internal var movieList = mutableListOf<Movie>()
+    private var movieList = mutableListOf<Movie>()
     set(value) {
         field = value
         notifyDataSetChanged()

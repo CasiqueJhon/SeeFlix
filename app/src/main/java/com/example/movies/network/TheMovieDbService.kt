@@ -51,6 +51,6 @@ interface TheMovieDbService {
     suspend fun getMoviesBySearch(
         @Query("query") query: String,
         @Query("api_key") apiKey: String
-    )
+    ) : MovieDbResult
 
 }

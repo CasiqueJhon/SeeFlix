@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.FragmentManager
 import com.example.movies.databinding.ActivityMainBinding
 import com.example.movies.ui.adapter.ViewPagerAdapter
 import com.example.movies.ui.mostRatedMovies.MostRatedMoviesFragment
@@ -17,13 +18,24 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var searchView: SearchView
+    private lateinit var searchMovieFragment: SearchMovieFragment
+
+    private val fragmentManager = supportFragmentManager
+    private val fragmentTransaction = fragmentManager.beginTransaction()
+    private var fragmentCommitted = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUpAdapter()
-        prepareSearchView()
+    }
+
+    private fun init() {
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragment_container, PopularMoviesFragment())
+            .commit()
     }
 
     private fun setUpAdapter() {
@@ -31,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         viewPagerAdapter.addFragment(PopularMoviesFragment(), "Popular")
         viewPagerAdapter.addFragment(MostRatedMoviesFragment(), "Most Rated")
         viewPagerAdapter.addFragment(UpcomingMoviesFragment(), "Upcoming")
+        prepareSearchView()
 
         val tabLayout = binding.tabLayout
         val viewPager = binding.viewPager
@@ -43,26 +56,41 @@ class MainActivity : AppCompatActivity() {
 
     private fun prepareSearchView() {
         searchView = binding.searchView
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchView.setOnQueryTextListener(object :
+            SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
-                //this function will find the movie once the user submit
-                Toast.makeText(this@MainActivity, "text submit", Toast.LENGTH_SHORT).show()
+                launchSearchFragment(query)
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                //launchSearchFragment(newText)
+                return false
+            }
+
+            private fun launchSearchFragment(newText: String?): Boolean {
                 if (newText != null && newText.isNotEmpty()) {
-                    val searchMovieFragment = SearchMovieFragment.newInstance(newText)
-                    val fragmentManager = supportFragmentManager
-                    val fragmentTransaction = fragmentManager.beginTransaction()
+                    searchMovieFragment = SearchMovieFragment.newInstance(newText)
                     fragmentTransaction.replace(R.id.fragment_container, searchMovieFragment)
                     fragmentTransaction.addToBackStack(null)
-                    fragmentTransaction.commit()
+                    fragmentManager.popBackStack("SearchMovieFragment", 0)
+                    fragmentTransaction.show(searchMovieFragment)
+                    if (!fragmentCommitted)
+                        fragmentTransaction.commit()
+                    fragmentCommitted = true
                 }
                 return false
             }
         })
+        searchView.setOnCloseListener {
+            fragmentTransaction.hide(searchMovieFragment)
+            searchView.setQuery("", false)
+            searchView.clearFocus()
+            fragmentTransaction.commit()
+            fragmentCommitted = false
+            false
+        }
     }
 
 }
