@@ -9,7 +9,8 @@ import javax.inject.Singleton
 @Component(
     modules = [
         ModuleMovieRepository::class,
-        ModuleMovie::class
+        ModuleMovie::class,
+        ModuleDatabase::class
     ]
 )
 @Singleton
