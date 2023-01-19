@@ -16,4 +16,5 @@
     <string name="search_nav_menu">Buscar</string>
     <string name="favorites_nav_menu">Favoritas</string>
     <string name="profile_nav_menu">Usuario</string>
+    <string name="login_user_button">Iniciar Sesión</string>
 </resources>
