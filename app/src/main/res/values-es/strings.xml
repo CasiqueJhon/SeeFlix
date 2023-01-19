@@ -17,4 +17,8 @@
     <string name="favorites_nav_menu">Favoritas</string>
     <string name="profile_nav_menu">Usuario</string>
     <string name="login_user_button">Iniciar Sesión</string>
+    <string name="login_user_email">Correo electronico</string>
+    <string name="login_user_password">Contraseña</string>
+    <string name="login_user_forgot_password">has olvidado tu contraseña?</string>
+    <string name="login_user_create_account">No tienes una cuenta? SignUp</string>
 </resources>

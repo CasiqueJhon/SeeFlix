@@ -16,4 +16,9 @@
     <string name="favorites_nav_menu">Favorites</string>
     <string name="profile_nav_menu">Profile</string>
     <string name="login_user_button">Login</string>
+    <string name="login_user_email">Email</string>
+    <string name="login_user_password">Password</string>
+    <string name="login_user_forgot_password">forgotten password?</string>
+    <string name="login_user_create_account">Don´t have a account? SignUp</string>
+
 </resources>

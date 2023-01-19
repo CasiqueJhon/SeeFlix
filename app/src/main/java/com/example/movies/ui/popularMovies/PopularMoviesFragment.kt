@@ -50,12 +50,12 @@ class PopularMoviesFragment : Fragment() {
         binding.moviesList.adapter = moviesAdapter
 
         popularMoviesViewModel.fetchPopularMovies(1)
-        popularMoviesViewModel.movies.observe(viewLifecycleOwner, Observer { movies ->
+        popularMoviesViewModel.movies.observe(viewLifecycleOwner) { movies ->
             if (!popularMoviesViewModel.isLoading) {
                 moviesAdapter.appendMovies(movies)
                 popularMoviesViewModel.isLoading = true
             }
-        })
+        }
         binding.moviesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
