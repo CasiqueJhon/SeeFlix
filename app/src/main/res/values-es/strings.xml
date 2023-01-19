@@ -21,4 +21,6 @@
     <string name="login_user_password">Contraseña</string>
     <string name="login_user_forgot_password">has olvidado tu contraseña?</string>
     <string name="login_user_create_account">No tienes una cuenta? SignUp</string>
+    <string name="login_user_signup">Signup</string>
+    <string name="login_user_signup_have_account">Tienes una cuenta? Login</string>
 </resources>
