@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movies.db.User
+import com.example.movies.result.Result
 import com.example.movies.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,7 +16,6 @@ class LoginViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
 
-    private var userId: Int? = 0
     private val _registerResult = MutableLiveData<Result<Boolean>>()
     val registerResult: LiveData<Result<Boolean>>
         get() = _registerResult
@@ -25,7 +25,7 @@ class LoginViewModel @Inject constructor(
     }
 
     fun insertUser(email: String, password: String) {
-        val user = User(userId, email, password)
+        val user = User(null, email, password)
         viewModelScope.launch {
             _registerResult.value = userRepository.insertUser(user)
         }
