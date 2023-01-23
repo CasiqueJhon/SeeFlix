@@ -1,5 +1,6 @@
 package com.example.movies.ui.login
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,9 +20,17 @@ class LoginViewModel @Inject constructor(
     private val _registerResult = MutableLiveData<Result<Boolean>>()
     val registerResult: LiveData<Result<Boolean>>
         get() = _registerResult
+    private val _loginResult = MutableLiveData<Result<User?>>()
+    val loginResult: LiveData<Result<User?>>
+    get() = _loginResult
+    private val _loggedInUSer = MutableLiveData<Result<User?>>()
+    val loggedInUser: LiveData<Result<User?>>
+    get() = _loggedInUSer
 
-    fun login(email: String, password: String): Boolean {
-        return userRepository.login(email, password)
+    fun doLogin(email: String, password: String) {
+        viewModelScope.launch {
+            _loginResult.value = userRepository.login(email, password)
+        }
     }
 
     fun insertUser(email: String, password: String) {
@@ -31,7 +40,16 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun deleteUser(email: String) {
-        userRepository.deleteUser(email)
+    fun deleteUser(email: String) { userRepository.deleteUser(email)
+    }
+
+    fun saveUser(user: User, context: Context) {
+        userRepository.saveUserToPreferences(user, context)
+    }
+
+    fun checkIfUserLoggedIn(email: String, password: String) {
+        viewModelScope.launch {
+            _loggedInUSer.value = userRepository.login(email, password)
+        }
     }
 }
