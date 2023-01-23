@@ -82,6 +82,10 @@ dependencies {
     //youtubePlayerView
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
 
+    //room
+    implementation 'androidx.room:room-runtime:2.2.5'
+    kapt 'androidx.room:room-compiler:2.2.5'
+
 }
 
 kapt {

@@ -27,7 +27,7 @@ class MostRatedMoviesFragment : Fragment() {
 
     private var _binding: FragmentMostRatedMoviesBinding? = null
     private val binding: FragmentMostRatedMoviesBinding
-        get() = _binding ?: throw Exception(ErrorConstants.fragmentError)
+        get() = _binding ?: throw Exception(ErrorConstants.generalError)
 
     private val mosRatedMoviesViewModel by viewModels<MosRatedMoviesViewModel>()
     private val moviesAdapter = MoviesAdapter { navigateToDetail (it) }

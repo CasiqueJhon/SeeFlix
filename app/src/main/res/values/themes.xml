@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Movies" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Movies" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="windowActionBarOverlay">false</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">#000000</item>
@@ -26,6 +26,11 @@
     <style name="BottomNavigationViewStyle" parent="Widget.Design.BottomNavigationView">
         <item name="itemIconTint">@color/tab_unselected</item>
         <item name="itemTextColor">@color/tab_selected</item>
+    </style>
+
+    <style name="LoginTextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">#D50000</item>
+        <item name="boxStrokeWidth">2dp</item>
     </style>
 
 </resources>

@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#A0A0A0</color>
 
+    <color name="red_material_color">#D50000</color>
     <color name="tab_selected">#D50000</color>
     <color name="tab_unselected">#9E9E9E</color>
 </resources>

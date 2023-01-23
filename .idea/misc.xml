@@ -10,19 +10,28 @@
         <entry key="app/src/main/res/drawable/ic_image_placeholder.xml" value="0.221" />
         <entry key="app/src/main/res/drawable/ic_launcher.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/ic_launcher_movie.xml" value="0.221" />
         <entry key="app/src/main/res/drawable/ic_movie_detail_view.xml" value="0.224" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.221" />
+        <entry key="app/src/main/res/drawable/input_text_style.xml" value="0.221" />
+        <entry key="app/src/main/res/drawable/round_button.xml" value="0.221" />
         <entry key="app/src/main/res/drawable/splashscreen.xml" value="0.2065" />
         <entry key="app/src/main/res/layout-v26/activity_movie_detail.xml" value="0.2953125" />
+        <entry key="app/src/main/res/layout/activity_loggin.xml" value="0.3591485507246377" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.3591485507246377" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_most_rated_movies.xml" value="0.34601449275362317" />
         <entry key="app/src/main/res/layout/activity_movie_detail.xml" value="0.25861195542046606" />
         <entry key="app/src/main/res/layout/activity_show_movies.xml" value="0.34601449275362317" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.3591485507246377" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.34601449275362317" />
         <entry key="app/src/main/res/layout/activity_upcoming_movies.xml" value="0.34601449275362317" />
         <entry key="app/src/main/res/layout/credits_item.xml" value="0.34601449275362317" />
+        <entry key="app/src/main/res/layout/fragment_most_rated_movies.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/layout/fragment_popular_movies.xml" value="0.2989583333333333" />
         <entry key="app/src/main/res/layout/fragment_search_movie.xml" value="0.22708333333333333" />
+        <entry key="app/src/main/res/layout/fragment_sign_up.xml" value="0.3591485507246377" />
+        <entry key="app/src/main/res/layout/fragment_upcoming_movies.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/layout/movie_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/videos_item.xml" value="0.3591485507246377" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.5302083333333333" />

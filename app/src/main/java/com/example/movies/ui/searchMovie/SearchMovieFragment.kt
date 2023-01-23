@@ -28,7 +28,7 @@ class SearchMovieFragment : Fragment() {
 
     private var _binding: FragmentSearchMovieBinding? = null
     private val binding: FragmentSearchMovieBinding
-        get() = _binding ?: throw Exception(ErrorConstants.fragmentError)
+        get() = _binding ?: throw Exception(ErrorConstants.generalError)
     private var query: String = ""
 
     private val searchFragmentViewModel by viewModels<SearchMovieViewModel>()
