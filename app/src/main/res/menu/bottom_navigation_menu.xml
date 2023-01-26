@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_home"
+        app:showAsAction="always"
         android:title="@string/home_nav_menu"/>
 
     <item
         android:id="@+id/nav_search"
         android:icon="@drawable/ic_search"
+        app:showAsAction="always"
         android:title="@string/search_nav_menu"/>
 
     <item
         android:id="@+id/nav_favorites"
         android:icon="@drawable/ic_favorite"
+        app:showAsAction="always"
         android:title="@string/favorites_nav_menu"/>
 
     <item
         android:id="@+id/nav_profile"
-        android:icon="@drawable/ic_profile"
+        android:icon="@drawable/ic_user_profile_image"
+        app:showAsAction="always"
         android:title="@string/profile_nav_menu"/>
 
 </menu>

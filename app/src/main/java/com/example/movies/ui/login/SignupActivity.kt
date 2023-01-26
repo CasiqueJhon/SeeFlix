@@ -3,16 +3,13 @@ package com.example.movies.ui.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
-import androidx.activity.R
 import androidx.activity.viewModels
 import com.example.movies.MainActivity
 import com.example.movies.constants.ErrorConstants
 import com.example.movies.databinding.ActivitySignupBinding
 import com.example.movies.result.Result
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.math.log
 
 @AndroidEntryPoint
 class SignupActivity : AppCompatActivity() {
@@ -61,7 +58,7 @@ class SignupActivity : AppCompatActivity() {
                         is Result.Error -> {
                             Toast.makeText(
                                 this,
-                                ErrorConstants.generalError,
+                                ErrorConstants.GENERAL_ERROR,
                                 Toast.LENGTH_SHORT
                             )
                                 .show()

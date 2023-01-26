@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/gray_gradient"
-    tools:context=".ui.movieDetail.MovieDetail">
+    tools:context=".ui.movieDetail.MovieDetailActivity">
 
     <ScrollView
         android:layout_width="match_parent"

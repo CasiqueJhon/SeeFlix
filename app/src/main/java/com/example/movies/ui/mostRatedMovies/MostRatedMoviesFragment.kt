@@ -9,12 +9,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.movies.R
 import com.example.movies.constants.ErrorConstants
 import com.example.movies.databinding.FragmentMostRatedMoviesBinding
 import com.example.movies.model.Movie
 import com.example.movies.repository.MovieRepository
 import com.example.movies.ui.adapter.MoviesAdapter
-import com.example.movies.ui.movieDetail.MovieDetail
+import com.example.movies.ui.movieDetail.MovieDetailActivity
+import com.example.movies.ui.user.UserActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -27,7 +29,7 @@ class MostRatedMoviesFragment : Fragment() {
 
     private var _binding: FragmentMostRatedMoviesBinding? = null
     private val binding: FragmentMostRatedMoviesBinding
-        get() = _binding ?: throw Exception(ErrorConstants.generalError)
+        get() = _binding ?: throw Exception(ErrorConstants.GENERAL_ERROR)
 
     private val mosRatedMoviesViewModel by viewModels<MosRatedMoviesViewModel>()
     private val moviesAdapter = MoviesAdapter { navigateToDetail (it) }
@@ -60,11 +62,12 @@ class MostRatedMoviesFragment : Fragment() {
                 handleOnScrolled(recyclerView, dx, dy)
             }
         })
+        prepareBottomNavigationView()
     }
 
     private fun navigateToDetail(movie: Movie) {
-        val intent = Intent(requireContext(), MovieDetail::class.java)
-        intent.putExtra(MovieDetail.EXTRA_MOVIE, movie)
+        val intent = Intent(requireContext(), MovieDetailActivity::class.java)
+        intent.putExtra(MovieDetailActivity.EXTRA_MOVIE, movie)
         startActivity(intent)
     }
 
@@ -75,6 +78,25 @@ class MostRatedMoviesFragment : Fragment() {
         if (totalItemCount - lastVisibleItem <= 5 && !mosRatedMoviesViewModel.isLoading) {
             mosRatedMoviesViewModel.currentPage++
             mosRatedMoviesViewModel.fetchMostRatedMovies(mosRatedMoviesViewModel.currentPage)
+        }
+    }
+
+    private fun prepareBottomNavigationView() {
+        val bottomNavigationView = binding.bottomNavigation
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_search -> {
+
+                }
+                R.id.nav_favorites -> {
+
+                }
+                R.id.nav_profile -> {
+                    val userIntent = Intent(requireContext(), UserActivity::class.java)
+                    startActivity(userIntent)
+                }
+            }
+            true
         }
     }
 

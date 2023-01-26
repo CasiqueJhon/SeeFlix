@@ -8,17 +8,15 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.movies.databinding.ActivityMovieDetailBinding
-import com.example.movies.databinding.VideosItemBinding
 import com.example.movies.model.Movie
 import com.example.movies.repository.MovieRepository
 import com.example.movies.ui.adapter.CharactersAdapter
 import com.example.movies.ui.adapter.VideosAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_movie_detail.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MovieDetail : AppCompatActivity() {
+class MovieDetailActivity : AppCompatActivity() {
 
     @Inject
     lateinit var movieRepository: MovieRepository
@@ -66,7 +64,7 @@ class MovieDetail : AppCompatActivity() {
             charactersAdapter.notifyDataSetChanged()
         })
         binding.castList.layoutManager = LinearLayoutManager(
-            this@MovieDetail,
+            this@MovieDetailActivity,
             LinearLayoutManager.HORIZONTAL,
             false
         )
@@ -77,7 +75,7 @@ class MovieDetail : AppCompatActivity() {
             videosAdapter.notifyDataSetChanged()
         })
         binding.videoList.layoutManager = LinearLayoutManager(
-            this@MovieDetail,
+            this@MovieDetailActivity,
             LinearLayoutManager.VERTICAL,
             false
         )
