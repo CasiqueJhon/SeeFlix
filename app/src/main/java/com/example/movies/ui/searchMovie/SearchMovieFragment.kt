@@ -15,7 +15,8 @@ import com.example.movies.databinding.FragmentSearchMovieBinding
 import com.example.movies.model.Movie
 import com.example.movies.repository.MovieRepository
 import com.example.movies.ui.adapter.MoviesAdapter
-import com.example.movies.ui.movieDetail.MovieDetail
+import com.example.movies.ui.movieDetail.MovieDetailActivity
+import com.example.movies.ui.user.UserActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -28,7 +29,7 @@ class SearchMovieFragment : Fragment() {
 
     private var _binding: FragmentSearchMovieBinding? = null
     private val binding: FragmentSearchMovieBinding
-        get() = _binding ?: throw Exception(ErrorConstants.generalError)
+        get() = _binding ?: throw Exception(ErrorConstants.GENERAL_ERROR)
     private var query: String = ""
 
     private val searchFragmentViewModel by viewModels<SearchMovieViewModel>()
@@ -73,8 +74,8 @@ class SearchMovieFragment : Fragment() {
     }
 
     private fun navigateToDetail(movie: Movie) {
-        val intent = Intent(requireContext(), MovieDetail::class.java)
-        intent.putExtra(MovieDetail.EXTRA_MOVIE, movie)
+        val intent = Intent(requireContext(), MovieDetailActivity::class.java)
+        intent.putExtra(MovieDetailActivity.EXTRA_MOVIE, movie)
         startActivity(intent)
     }
 
@@ -93,7 +94,8 @@ class SearchMovieFragment : Fragment() {
 
                 }
                 R.id.nav_profile -> {
-
+                    val userIntent = Intent(requireContext(), UserActivity::class.java)
+                    startActivity(userIntent)
                 }
             }
             true

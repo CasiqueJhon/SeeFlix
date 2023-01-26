@@ -11,7 +11,6 @@ import com.example.movies.constants.ErrorConstants
 import com.example.movies.databinding.ActivityLoginBinding
 import com.example.movies.result.Result
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_login.*
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
@@ -51,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
                         launchMainActivity()
                     }
                     is Result.Error -> {
-                        Toast.makeText(this, ErrorConstants.invalidUser, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, ErrorConstants.INVALID_USER, Toast.LENGTH_SHORT).show()
                     }
                 }
             }

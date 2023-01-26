@@ -16,7 +16,7 @@ class MovieRepository @Inject constructor(
             page,
             pageSize,
             NetworkConstants.ES_LANGUAGE,
-            NetworkConstants.APY_KEY
+            NetworkConstants.API_KEY
         )
     }
 
@@ -25,7 +25,7 @@ class MovieRepository @Inject constructor(
             page,
             pageSize,
             NetworkConstants.ES_LANGUAGE,
-            NetworkConstants.APY_KEY
+            NetworkConstants.API_KEY
         )
     }
 
@@ -34,20 +34,20 @@ class MovieRepository @Inject constructor(
             page,
             pageSize,
             NetworkConstants.ES_LANGUAGE,
-            NetworkConstants.APY_KEY
+            NetworkConstants.API_KEY
         )
     }
 
     suspend fun getMovieCredits(movieId: Int): CreditsResults {
-        return theMovieDbService.creditsList(movieId, NetworkConstants.APY_KEY)
+        return theMovieDbService.creditsList(movieId, NetworkConstants.API_KEY)
     }
 
     suspend fun getMovieVideos(movieId: Int) : VideosResults {
-        return theMovieDbService.getMovieVideos(movieId, NetworkConstants.APY_KEY, NetworkConstants.ES_LANGUAGE)
+        return theMovieDbService.getMovieVideos(movieId, NetworkConstants.API_KEY, NetworkConstants.ES_LANGUAGE)
     }
 
     suspend fun getMovieSearch(query: String) : MovieDbResult {
-        return theMovieDbService.getMoviesBySearch(query, NetworkConstants.APY_KEY)
+        return theMovieDbService.getMoviesBySearch(query, NetworkConstants.API_KEY)
     }
 
 }

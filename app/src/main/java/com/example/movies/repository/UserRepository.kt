@@ -25,7 +25,7 @@ class UserRepository @Inject constructor(
                 if (user != null) {
                     Result.Success(user)
                 } else {
-                    Result.Error(Exception(ErrorConstants.invalidUser))
+                    Result.Error(Exception(ErrorConstants.INVALID_USER))
                 }
             } catch (e: Exception) {
                 Result.Error(e)
