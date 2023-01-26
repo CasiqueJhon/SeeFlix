@@ -15,7 +15,7 @@
         android:baseline="@dimen/cardview_default_radius"
         android:baselineAlignBottom="false"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/ic_splash_screen" />
+        app:srcCompat="@drawable/ic_popcorn" />
 
     <TextView
         android:id="@+id/movie_title"
