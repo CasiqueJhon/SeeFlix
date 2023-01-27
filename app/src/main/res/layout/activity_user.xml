@@ -98,6 +98,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txt_settings"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -109,6 +110,7 @@
                     android:text="Profile settings" />
 
                 <TextView
+                    android:id="@+id/txt_downloads"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -118,9 +120,11 @@
                     android:clickable="true"
                     android:elevation="4dp"
                     android:padding="20dp"
-                    android:text="Downloads" />
+                    android:text="Downloads"
+                    android:focusable="true" />
 
                 <TextView
+                    android:id="@+id/txt_favorites"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -128,9 +132,11 @@
                     android:clickable="true"
                     android:elevation="4dp"
                     android:padding="20dp"
-                    android:text="Favorites" />
+                    android:text="Favorites"
+                    android:focusable="true" />
 
                 <TextView
+                    android:id="@+id/txt_logout"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -138,7 +144,8 @@
                     android:clickable="true"
                     android:elevation="4dp"
                     android:padding="20dp"
-                    android:text="Logout" />
+                    android:text="Logout"
+                    android:focusable="true" />
             </LinearLayout>
         </RelativeLayout>
 

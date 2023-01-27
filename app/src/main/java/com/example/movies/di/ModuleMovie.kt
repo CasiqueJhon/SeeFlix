@@ -1,5 +1,7 @@
 package com.example.movies.di
 
+import android.app.Application
+import android.content.Context
 import com.example.movies.network.TheMovieDbService
 import com.example.movies.network.TheMovieDbServiceImpl
 import dagger.Module

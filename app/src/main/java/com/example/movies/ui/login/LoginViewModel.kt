@@ -26,6 +26,12 @@ class LoginViewModel @Inject constructor(
     private val _loggedInUSer = MutableLiveData<Result<User?>>()
     val loggedInUser: LiveData<Result<User?>>
     get() = _loggedInUSer
+    private val _deleteResult = MutableLiveData<Result<User?>>()
+    val deleteResult: LiveData<Result<User?>>
+    get() = _deleteResult
+    private val _getUserResult = MutableLiveData<Result<User?>>()
+    val getUserResult: LiveData<Result<User?>>
+    get() = _getUserResult
 
     fun doLogin(email: String, password: String) {
         viewModelScope.launch {
@@ -40,7 +46,17 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun deleteUser(email: String) { userRepository.deleteUser(email)
+    fun deleteUser(user: User, context: Context) {
+        viewModelScope.launch {
+            userRepository.removeUserFromPreferences(context)
+            _deleteResult.value = userRepository.deleteUser(user)
+        }
+    }
+
+    fun getUser(email: String, password: String) {
+        viewModelScope.launch {
+            _getUserResult.value = userRepository.getUser(email, password)
+        }
     }
 
     fun saveUser(user: User, context: Context) {

@@ -44,8 +44,27 @@ class UserRepository @Inject constructor(
         }
     }
 
-    fun deleteUser(email: String) {
-        userDao.deleteUser(email)
+    suspend fun deleteUser(user: User): Result<User?> {
+        return withContext(Dispatchers.IO) {
+            try {
+                userDao.deleteUser(user)
+                Result.Success(null)
+
+            } catch (e: Exception) {
+                Result.Error(e)
+            }
+        }
+    }
+
+    suspend fun getUser(email: String, password: String): Result<User?> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val user = userDao.getUsers(email, password)
+                Result.Success(user)
+            } catch (e: Exception) {
+                Result.Error(Exception(ErrorConstants.INVALID_USER))
+            }
+        }
     }
 
     fun saveUserToPreferences(user: User, context: Context) {
@@ -53,6 +72,16 @@ class UserRepository @Inject constructor(
         val editor = shadPref.edit()
         editor.putString("email", user.email)
         editor.putString("password", user.password)
+        editor.apply()
+    }
+
+    fun removeUserFromPreferences(context: Context) {
+        val sharedPref = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        val email = sharedPref.getString("email", "")
+        val password = sharedPref.getString("password", "")
+        editor.remove(email)
+        editor.remove(password)
         editor.apply()
     }
 }
