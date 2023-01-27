@@ -15,10 +15,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
-    companion object {
-        const val SHARED_PREF_NAME = "user_shared_preferences"
-    }
-
     private lateinit var binding: ActivityLoginBinding
 
     private val loginViewModel: LoginViewModel by viewModels()
@@ -27,14 +23,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        isUserLogged()
         login()
         launchSignup()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        isUserLogged()
     }
 
     private fun login() {
@@ -51,25 +41,6 @@ class LoginActivity : AppCompatActivity() {
                     }
                     is Result.Error -> {
                         Toast.makeText(this, ErrorConstants.INVALID_USER, Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        }
-    }
-
-    private fun isUserLogged() {
-        val sharedPref = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
-        val email = sharedPref.getString("email", null)
-        val password = sharedPref.getString("password", null)
-        if (email != null && password != null) {
-            loginViewModel.checkIfUserLoggedIn(email, password)
-            loginViewModel.loggedInUser.observe(this) { user ->
-                when (user) {
-                    is Result.Success -> {
-                        launchMainActivity()
-                    }
-                    is Result.Error -> {
-                        Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
