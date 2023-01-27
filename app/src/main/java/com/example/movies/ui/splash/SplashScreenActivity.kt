@@ -46,6 +46,7 @@ class SplashScreenActivity : AppCompatActivity() {
                         }
                         is Result.Error -> {
                             Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show()
+                            launchLoginActivity()
                         }
                     }
                 }
