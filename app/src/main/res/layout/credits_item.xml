@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:background="@drawable/gray_gradient"
     android:layout_height="260dp"
-    android:padding="16dp">
+    android:padding="8dp">
 
     <io.github.florent37.shapeofview.shapes.RoundRectView
         android:id="@+id/gradient_container"
@@ -24,7 +23,7 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="225dp"
-            android:background="@drawable/gray_gradient"
+            android:background="@drawable/black_gradient"
             android:orientation="vertical">
 
             <ImageView
@@ -38,13 +37,12 @@
                 android:id="@+id/credits_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
                 android:lines="1"
                 android:layout_marginTop="12dp"
                 android:text="@string/credits_name_detail"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:layout_marginStart="8dp"
-                android:textColor="@color/design_default_color_on_secondary"
+                android:layout_marginStart="4dp"
+                android:textColor="@color/gray"
                 android:textStyle="bold" />
 
             <TextView
@@ -52,10 +50,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/character_credits_detail"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="4dp"
                 android:lines="1"
-                android:ellipsize="end"
-                android:textColor="@color/design_default_color_on_secondary"
+                android:textColor="@color/gray"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
 

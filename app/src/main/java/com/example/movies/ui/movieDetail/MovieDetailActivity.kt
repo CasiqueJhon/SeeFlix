@@ -13,6 +13,8 @@ import com.example.movies.repository.MovieRepository
 import com.example.movies.ui.adapter.CharactersAdapter
 import com.example.movies.ui.adapter.VideosAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -25,6 +27,10 @@ class MovieDetailActivity : AppCompatActivity() {
     private var movie: Movie? = null
     private val movieDetailViewModel by viewModels<MovieDetailViewModel>()
     private var movieId: Int? = 0
+
+    private val currentFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    private val newFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+
 
     companion object {
         const val EXTRA_MOVIE = "DetailActivity:title"
@@ -41,14 +47,15 @@ class MovieDetailActivity : AppCompatActivity() {
     }
 
     private fun showMovieDetails() {
-        title = movie?.title
         Glide
             .with(this)
             .load("https://image.tmdb.org/t/p/w780/${movie?.backdrop_path}")
             .into(binding.imgBackdrop)
         binding.movieDescription.text = movie?.overview
-        binding.movieRelease.text = movie?.release_date
-        binding.movieViews.text = movie?.popularity.toString()
+        val serverDate = movie?.release_date
+        val date = serverDate?.let { currentFormat.parse(it) }
+        val formattedDate = date?.let { newFormat.format(it) }
+        binding.movieRelease.text = formattedDate
         binding.movieVotes.text = movie?.vote_average.toString()
         movieId = movie?.id
         Log.d("TAG", "movie id $movieId")
