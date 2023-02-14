@@ -24,4 +24,5 @@
     <string name="login_user_signup">Signup</string>
     <string name="login_user_signup_have_account">Tienes una cuenta? Login</string>
     <string name="seeflix">SeeFlix</string>
+    <string name="add_to_favorite_movie">Me gusta</string>
 </resources>

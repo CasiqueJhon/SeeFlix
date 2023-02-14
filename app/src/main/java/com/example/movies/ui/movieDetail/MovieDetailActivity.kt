@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.movies.R
 import com.example.movies.databinding.ActivityMovieDetailBinding
 import com.example.movies.model.Movie
 import com.example.movies.repository.MovieRepository
@@ -34,6 +35,7 @@ class MovieDetailActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_MOVIE = "DetailActivity:title"
+        const val IMAGE_URL = "https://image.tmdb.org/t/p/w780/"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,13 +45,14 @@ class MovieDetailActivity : AppCompatActivity() {
         movie = intent.getParcelableExtra(EXTRA_MOVIE) ?: Movie()
         if (movie != null) showMovieDetails()
         prepareAdapter()
+        likeButton()
 
     }
 
     private fun showMovieDetails() {
         Glide
             .with(this)
-            .load("https://image.tmdb.org/t/p/w780/${movie?.backdrop_path}")
+            .load("$IMAGE_URL${movie?.backdrop_path}")
             .into(binding.imgBackdrop)
         binding.movieDescription.text = movie?.overview
         val serverDate = movie?.release_date
@@ -87,4 +90,20 @@ class MovieDetailActivity : AppCompatActivity() {
             false
         )
     }
+
+    private fun likeButton() {
+        val likeButton = binding.btnLike
+        likeButton.setOnClickListener {
+            val isLiked = it.getTag(R.string.is_liked) as? Boolean ?: false
+
+            if (isLiked) {
+                likeButton.setIconResource(R.drawable.ic_favorite)
+                it.setTag(R.string.is_liked, false)
+            } else {
+                likeButton.setIconResource(R.drawable.ic_favorite_full)
+                it.setTag(R.string.is_liked, true)
+            }
+        }
+    }
+
 }

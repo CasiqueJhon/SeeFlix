@@ -72,13 +72,6 @@ dependencies {
     //gradient
     implementation 'io.github.florent37:shapeofview:1.4.7'
 
-    //exoplayer
-    implementation 'com.google.android.exoplayer:exoplayer:2.18.2'
-    implementation 'com.google.android.exoplayer:exoplayer-hls:2.18.2'
-    implementation 'com.google.android.exoplayer:exoplayer-dash:2.18.2'
-    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.18.2'
-    implementation 'com.google.android.exoplayer:exoplayer-ui:2.18.2'
-
     //youtubePlayerView
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
 

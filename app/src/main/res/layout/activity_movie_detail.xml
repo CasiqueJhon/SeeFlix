@@ -30,16 +30,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="@string/add_to_favorite_movie"
+                    app:icon="@drawable/ic_favorite"
+                    app:iconGravity="textStart"
+                    app:iconSize="24dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/movie_votes"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/movie_votes"
+                    app:strokeColor="@color/purple_500"
+                    app:strokeWidth="2dp" />
+
                 <TextView
                     android:id="@+id/movie_votes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:textColor="@color/gray"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Movie Votes" />
