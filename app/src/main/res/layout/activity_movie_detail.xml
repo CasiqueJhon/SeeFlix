@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/gray_gradient"
-    tools:context=".ui.movieDetail.MovieDetailActivity">
+    tools:context=".ui.movieDetail.MovieDetailActivity"
+    android:background="@drawable/black_gradient">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,48 +30,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/movie_detail_view"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_like"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:cropToPadding="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_movie_detail_view" />
-
-                <TextView
-                    android:id="@+id/movie_views"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_toEndOf="@id/movie_detail_view"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/movie_detail_view"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Movie View" />
-
-                <ImageView
-                    android:id="@+id/movie_detail_vote_average"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_toEndOf="@id/movie_views"
-                    android:cropToPadding="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/movie_votes"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_movie_details_vote_average" />
+                    android:layout_marginEnd="12dp"
+                    android:text="@string/add_to_favorite_movie"
+                    app:icon="@drawable/ic_favorite"
+                    app:iconGravity="textStart"
+                    app:iconSize="24dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/movie_votes"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/movie_votes"
+                    app:strokeColor="@color/purple_500"
+                    app:strokeWidth="2dp" />
 
                 <TextView
                     android:id="@+id/movie_votes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_toEndOf="@id/movie_detail_vote_average"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@color/gray"
+                    android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Movie Votes" />
 
@@ -79,7 +63,8 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
 
                 <TextView
                     android:id="@+id/movie_release_year"
@@ -89,7 +74,7 @@
                     android:layout_marginTop="8dp"
                     android:text="@string/movie_releases_year"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     android:textStyle="bold"
                     tools:text="Movie Year:" />
 
@@ -97,11 +82,14 @@
                     android:id="@+id/movie_release"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="12dp"
                     android:gravity="end"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/black"
+                    android:textColor="@color/gray"
                     tools:text="Movie Year" />
 
             </RelativeLayout>
@@ -110,10 +98,12 @@
                 android:id="@+id/movie_overview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
                 android:text="@string/movie_detail_overview"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="18sp"
+                android:textColor="@color/gray"
                 android:textStyle="bold" />
 
             <TextView
@@ -121,8 +111,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:justificationMode="inter_word"
-                android:padding="8dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="2dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="16sp"
+                android:textColor="@color/gray"
                 tools:text="Movie Description" />
 
             <TextView
@@ -130,9 +124,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:justificationMode="inter_word"
-                android:padding="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
                 android:text="@string/movie_cast_detail"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="18sp"
+                android:textColor="@color/gray"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -152,8 +150,7 @@
                 android:id="@+id/videos_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="8dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/movie_videos"
@@ -161,7 +158,11 @@
                     android:layout_height="wrap_content"
                     android:justificationMode="inter_word"
                     android:text="@string/movie_videos_detail"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textSize="18sp"
+                    android:textColor="@color/gray"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
