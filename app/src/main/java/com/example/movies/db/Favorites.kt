@@ -7,16 +7,13 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "favorites")
 data class Favorite(
     @PrimaryKey
-    @ColumnInfo(name = "id")
-    val id: Int,
-    @ColumnInfo(name = "backdrop_path")
-    val backdrop_path: String,
-    @ColumnInfo(name = "original_title")
-    val original_title: String,
-    @ColumnInfo(name = "overview")
-    val overview: String,
-    @ColumnInfo(name = "thumbnail")
-    val thumbnail: String,
-    @ColumnInfo(name = "title")
-    val title: String
+    @ColumnInfo(name = "movie_id")
+    val movieId: Int = 0,
+    val title: String = "",
+    val overview: String = "",
+    val posterPath: String = "",
+    val backdropPath: String = "",
+    val releaseDate: String = "",
+    val voteAverage: Double = 0.0,
+    var isFavorite: Boolean = false
 )

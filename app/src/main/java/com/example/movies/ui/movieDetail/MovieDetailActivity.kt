@@ -3,6 +3,7 @@ package com.example.movies.ui.movieDetail
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -42,11 +43,15 @@ class MovieDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMovieDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initDetails()
+    }
+
+    private fun initDetails() {
         movie = intent.getParcelableExtra(EXTRA_MOVIE) ?: Movie()
         if (movie != null) showMovieDetails()
         prepareAdapter()
+        checkIsMovieIsFavorite()
         likeButton()
-
     }
 
     private fun showMovieDetails() {
@@ -92,18 +97,37 @@ class MovieDetailActivity : AppCompatActivity() {
     }
 
     private fun likeButton() {
+        movieDetailViewModel.isFavorite.observe(this) { isFavorite ->
+            val likeButton = binding.btnLike
+            likeButton.setIconResource(if (isFavorite == true) R.drawable.ic_favorite_full else R.drawable.ic_favorite)
+            likeButton.setTag(R.string.is_liked, isFavorite)
+        }
+
         val likeButton = binding.btnLike
+        likeButton.setTag(R.string.is_liked, movieDetailViewModel.isFavorite.value)
+        likeButton.setIconResource(if (likeButton.getTag(R.string.is_liked) as? Boolean == true) R.drawable.ic_favorite_full else R.drawable.ic_favorite)
         likeButton.setOnClickListener {
             val isLiked = it.getTag(R.string.is_liked) as? Boolean ?: false
-
             if (isLiked) {
                 likeButton.setIconResource(R.drawable.ic_favorite)
                 it.setTag(R.string.is_liked, false)
+                Toast.makeText(this, getString(R.string.remove_movie_favorite), Toast.LENGTH_SHORT).show()
             } else {
                 likeButton.setIconResource(R.drawable.ic_favorite_full)
                 it.setTag(R.string.is_liked, true)
+                if (movieDetailViewModel.movie.value != null) {
+                    val favorite = movieDetailViewModel.movie.value!!
+                    favorite.isFavorite = true
+                    movieDetailViewModel.addToFavorites(favorite)
+                }
+                Toast.makeText(this, getString(R.string.add_favorite_movie), Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun checkIsMovieIsFavorite() {
+        movieId?.let { movieDetailViewModel.getFavoriteMovie(it) }
+        movieId?.let { movieDetailViewModel.isFavoriteMovie(it) }
     }
 
 }

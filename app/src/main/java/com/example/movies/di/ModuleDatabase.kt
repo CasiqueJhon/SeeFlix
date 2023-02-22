@@ -5,7 +5,9 @@ import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.movies.db.AppDatabase
+import com.example.movies.db.FavoriteDao
 import com.example.movies.db.UserDao
+import com.example.movies.repository.FavoriteRepository
 import com.example.movies.repository.UserRepository
 import dagger.Module
 import dagger.Provides
@@ -18,26 +20,20 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object ModuleDatabase {
 
-    val MIGRATION_1_2 = object : Migration(1, 2) {
+    val MIGRATION_2_3 = object : Migration(2, 3) {
         override fun migrate(database: SupportSQLiteDatabase) {
-            database.execSQL(
-                "CREATE TABLE IF NOT EXISTS favorites " +
-                        "(id INTEGER PRIMARY KEY NOT NULL, " +
-                        "backdrop_path TEXT NOT NULL, " +
-                        "original_title TEXT NOT NULL, " +
-                        "overview TEXT NOT NULL, " +
-                        "thumbnail TEXT NOT NULL, " +
-                        "title TEXT NOT NULL)"
-            )
+            database.execSQL("ALTER TABLE favorites ADD COLUMN isFavorite INTEGER NOT NULL DEFAULT 0")
         }
     }
+
+
 
     @Provides
     @Singleton
     fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
         return Room
             .databaseBuilder(context, AppDatabase::class.java, "user_data_base")
-            .addMigrations(MIGRATION_1_2)
+            .addMigrations(MIGRATION_2_3)
             .build()
     }
 
@@ -49,5 +45,17 @@ object ModuleDatabase {
     @Provides
     fun provideUserRepository(userDao: UserDao): UserRepository {
         return UserRepository(userDao)
+    }
+
+    @Provides
+    fun provideFavoriteDao(appDatabase: AppDatabase): FavoriteDao {
+        return appDatabase.favoriteDao
+    }
+
+    @Provides
+    fun provideFavoriteRepository(
+        favoriteDao: FavoriteDao
+    ): FavoriteRepository {
+        return FavoriteRepository(favoriteDao)
     }
 }

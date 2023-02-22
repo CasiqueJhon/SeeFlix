@@ -25,4 +25,6 @@
     <string name="login_user_signup_have_account">Tienes una cuenta? Login</string>
     <string name="seeflix">SeeFlix</string>
     <string name="add_to_favorite_movie">Me gusta</string>
+    <string name="remove_movie_favorite">Se ha borrado de favoritas</string>
+    <string name="add_favorite_movie">Se ha añadido a favoritas</string>
 </resources>
