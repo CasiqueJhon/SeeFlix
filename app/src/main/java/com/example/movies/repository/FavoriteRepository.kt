@@ -10,17 +10,15 @@ import javax.inject.Inject
 
 class FavoriteRepository @Inject constructor(
     private val favoriteDao: FavoriteDao
-){
-
-    suspend fun insertFavorite(favorite: Favorite) : Result<Boolean> {
+) {
+    suspend fun insertFavorite(favorite: Favorite): Result<Boolean> {
         return withContext(Dispatchers.IO) {
             try {
                 favoriteDao.insert(favorite)
                 Result.Success(true)
             } catch (e: Exception) {
-                Result.Error(Exception(e))
+                Result.Error(e)
             }
-
         }
     }
 
@@ -30,15 +28,30 @@ class FavoriteRepository @Inject constructor(
                 val favorite = favoriteDao.getFavoriteByMovieId(id)
                 Result.Success(favorite)
             } catch (e: Exception) {
-                Result.Error(Exception(e))
+                Result.Error(e)
             }
         }
     }
 
-    suspend fun updateMovie(favorite: Favorite) {
+    suspend fun updateMovie(favorite: Favorite): Result<Boolean> {
         return withContext(Dispatchers.IO) {
-            favoriteDao.updateMovie(favorite)
+            try {
+                favoriteDao.updateMovie(favorite)
+                Result.Success(true)
+            } catch (e: Exception) {
+                Result.Error(e)
+            }
         }
     }
 
+    suspend fun getAllFavorites(): Result<List<Favorite>> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val favorites = favoriteDao.getAllFavorites()
+                Result.Success(favorites)
+            } catch (e: Exception) {
+                Result.Error(e)
+            }
+        }
+    }
 }
