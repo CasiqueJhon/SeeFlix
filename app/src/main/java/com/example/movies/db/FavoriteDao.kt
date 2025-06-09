@@ -17,6 +17,9 @@ interface FavoriteDao {
     @Query("SELECT * FROM favorites WHERE movie_id = :movieId")
     fun getFavoriteByMovieId(movieId: Int): Favorite?
 
+    @Query("SELECT * FROM favorites WHERE movie_id = :movieId AND isFavorite = 1")
+    fun getFavoriteMovieStatus(movieId: Int): Favorite?
+
     @Delete
     fun delete(favorite: Favorite)
 

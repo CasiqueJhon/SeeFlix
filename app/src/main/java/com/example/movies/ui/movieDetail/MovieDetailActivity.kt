@@ -6,6 +6,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.movies.R
@@ -18,6 +20,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
+import kotlinx.coroutines.launch
+import androidx.lifecycle.Lifecycle
+import com.example.movies.db.Favorite
 
 @AndroidEntryPoint
 class MovieDetailActivity : AppCompatActivity() {
@@ -50,8 +55,8 @@ class MovieDetailActivity : AppCompatActivity() {
         movie = intent.getParcelableExtra(EXTRA_MOVIE) ?: Movie()
         if (movie != null) showMovieDetails()
         prepareAdapter()
-        checkIsMovieIsFavorite()
-        likeButton()
+        setupFavoriteButton()
+        movie?.id?.let { movieDetailViewModel.checkFavoriteStatus(it) }
     }
 
     private fun showMovieDetails() {
@@ -96,38 +101,69 @@ class MovieDetailActivity : AppCompatActivity() {
         )
     }
 
-    private fun likeButton() {
-        movieDetailViewModel.isFavorite.observe(this) { isFavorite ->
-            val likeButton = binding.btnLike
-            likeButton.setIconResource(if (isFavorite == true) R.drawable.ic_favorite_full else R.drawable.ic_favorite)
-            likeButton.setTag(R.string.is_liked, isFavorite)
+    private fun setupFavoriteButton() {
+        val likeButton = binding.btnLike
+
+        // Observar cambios en el estado de favoritos
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                movieDetailViewModel.favoriteState.collect { state ->
+                    when (state) {
+                        is FavoriteState.Initial -> {
+                            // Estado inicial, no hacer nada
+                        }
+                        is FavoriteState.Loading -> {
+                            // Opcional: Mostrar loading
+                            likeButton.isEnabled = false
+                        }
+                        is FavoriteState.Success -> {
+                            likeButton.isEnabled = true
+                            updateFavoriteButtonUI(state.isFavorite)
+                        }
+                        is FavoriteState.Error -> {
+                            likeButton.isEnabled = true
+                            Toast.makeText(
+                                this@MovieDetailActivity,
+                                state.message,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            }
         }
 
-        val likeButton = binding.btnLike
-        likeButton.setTag(R.string.is_liked, movieDetailViewModel.isFavorite.value)
-        likeButton.setIconResource(if (likeButton.getTag(R.string.is_liked) as? Boolean == true) R.drawable.ic_favorite_full else R.drawable.ic_favorite)
+        // Configurar click listener
         likeButton.setOnClickListener {
-            val isLiked = it.getTag(R.string.is_liked) as? Boolean ?: false
-            if (isLiked) {
-                likeButton.setIconResource(R.drawable.ic_favorite)
-                it.setTag(R.string.is_liked, false)
-                Toast.makeText(this, getString(R.string.remove_movie_favorite), Toast.LENGTH_SHORT).show()
-            } else {
-                likeButton.setIconResource(R.drawable.ic_favorite_full)
-                it.setTag(R.string.is_liked, true)
-                if (movieDetailViewModel.movie.value != null) {
-                    val favorite = movieDetailViewModel.movie.value!!
-                    favorite.isFavorite = true
-                    movieDetailViewModel.addToFavorites(favorite)
-                }
-                Toast.makeText(this, getString(R.string.add_favorite_movie), Toast.LENGTH_SHORT).show()
+            movie?.let { currentMovie ->
+                val favorite = Favorite(
+                    movieId = currentMovie.id,
+                    title = currentMovie.title,
+                    overview = currentMovie.overview,
+                    posterPath = currentMovie.thumbnail,
+                    backdropPath = currentMovie.backdrop_path,
+                    releaseDate = currentMovie.release_date,
+                    voteAverage = currentMovie.vote_average
+                )
+                movieDetailViewModel.toggleFavorite(currentMovie.id, favorite)
             }
         }
     }
 
-    private fun checkIsMovieIsFavorite() {
-        movieId?.let { movieDetailViewModel.getFavoriteMovie(it) }
-        movieId?.let { movieDetailViewModel.isFavoriteMovie(it) }
+    private fun updateFavoriteButtonUI(isFavorite: Boolean) {
+        val likeButton = binding.btnLike
+        likeButton.setIconResource(
+            if (isFavorite) R.drawable.ic_favorite_full 
+            else R.drawable.ic_favorite
+        )
+        
+        // Actualizar texto del botón
+        val textRes = if (isFavorite) {
+            R.string.remove_movie_favorite
+        } else {
+            R.string.add_favorite_movie
+        }
+        likeButton.text = getString(textRes)
     }
 
 }

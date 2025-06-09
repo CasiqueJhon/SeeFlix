@@ -27,4 +27,6 @@
     <string name="add_to_favorite_movie">Me gusta</string>
     <string name="remove_movie_favorite">Se ha borrado de favoritas</string>
     <string name="add_favorite_movie">Se ha añadido a favoritas</string>
+    <string name="error_empty_email">El campo Email es incorreto, revisalo e intenta de nuevo</string>
+    <string name="error_empty_password">El campo Password es incorreto, revisalo e intenta de nuevo </string>
 </resources>

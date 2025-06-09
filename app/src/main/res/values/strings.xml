@@ -27,4 +27,6 @@
     <string name="is_liked">isLiked</string>
     <string name="remove_movie_favorite">Remove from favorites</string>
     <string name="add_favorite_movie">Add to favorites</string>
+    <string name="error_empty_email">Email is not valid, try agian</string>
+    <string name="error_empty_password">Password is not valid, try again</string>
 </resources>

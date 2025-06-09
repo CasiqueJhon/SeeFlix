@@ -5,15 +5,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.movies.auth.AuthManager
+import com.example.movies.auth.AuthState
 import com.example.movies.db.User
 import com.example.movies.result.Result
 import com.example.movies.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
+    private val authManager: AuthManager,
     private val userRepository: UserRepository
 ) : ViewModel() {
 
@@ -33,9 +39,68 @@ class LoginViewModel @Inject constructor(
     val getUserResult: LiveData<Result<User?>>
     get() = _getUserResult
 
-    fun doLogin(email: String, password: String) {
+    val authState: StateFlow<AuthState> = authManager.authState
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = AuthState.Initial
+        )
+
+    init {
+        checkActiveSession()
+    }
+
+    private fun checkActiveSession() {
         viewModelScope.launch {
-            _loginResult.value = userRepository.login(email, password)
+            authManager.getActiveSession()
+                .collect { state ->
+                    when (state) {
+                        is AuthState.Authenticated -> {
+                            // Validar y refrescar token si es necesario
+                            authManager.validateAndRefreshTokenIfNeeded()
+                        }
+                        else -> {
+                            // No hay sesión activa o hubo un error
+                        }
+                    }
+                }
+        }
+    }
+
+    fun login(email: String, password: String) {
+        viewModelScope.launch {
+            try {
+                when (val result = userRepository.getUser(email, password)) {
+                    is Result.Success -> {
+                        val user = result.data
+                        if (user != null) {
+                            // En un caso real, aquí obtendrías el token del backend
+                            val mockToken = "mock_token_${System.currentTimeMillis()}"
+                            val expiryTime = System.currentTimeMillis() + (7 * 24 * 60 * 60 * 1000) // 7 días
+                            
+                            authManager.saveSession(
+                                userId = user.id ?: 0,
+                                email = user.email,
+                                token = mockToken,
+                                expiryTimeMillis = expiryTime
+                            )
+                        } else {
+                            authManager.clearSession()
+                        }
+                    }
+                    is Result.Error -> {
+                        authManager.clearSession()
+                    }
+                }
+            } catch (e: Exception) {
+                authManager.clearSession()
+            }
+        }
+    }
+
+    fun logout() {
+        viewModelScope.launch {
+            authManager.clearSession()
         }
     }
 
